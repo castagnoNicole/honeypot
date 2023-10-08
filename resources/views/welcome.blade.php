@@ -39,7 +39,7 @@
                     @isset($users)
                         <ul class="text-gray-200">
                             @forelse ($users as $user)
-                                <li>{!! $user->name !!}}</li>
+                                <li>{{ $user->name }}</li>
                             @empty
                                 <li>No users found</li>
                             @endforelse

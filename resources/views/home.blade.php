@@ -16,6 +16,12 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+                <div class="card-body">
+                    <div class="panel-body">
+                        Check admin view:
+                        <a href="{{route('admin-view')}}">Admin View</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

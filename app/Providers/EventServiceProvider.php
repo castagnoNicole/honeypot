@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\HoneypotUserRetrieved;
 use App\Events\XSSDetected;
+use App\Listeners\LogHoneypotUserRetrieved;
 use App\Listeners\LogXSSDetected;
 use App\Models\User;
+use App\Observers\HoneypotUserObserver;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -27,6 +30,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         XSSDetected::class => [
             LogXSSDetected::class,
+        ],
+        HoneypotUserRetrieved::class => [
+            LogHoneypotUserRetrieved::class,
         ]
     ];
 
@@ -36,6 +42,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         User::observe(UserObserver::class);
+        User::observe(HoneypotUserObserver::class);
     }
 
     /**

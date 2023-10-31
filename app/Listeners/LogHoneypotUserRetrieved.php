@@ -22,6 +22,7 @@ class LogHoneypotUserRetrieved
      */
     public function handle(HoneypotUserRetrieved $event): void
     {
-        Log::info("[Fake Admin] ip: TO-DO");
+        $ip_address = Request()->getClientIp();
+        Log::info("[Fake Admin] ip: $ip_address");
     }
 }

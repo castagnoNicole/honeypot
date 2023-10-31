@@ -23,6 +23,7 @@ class LogXSSDetected
     public function handle(XSSDetected $event): void
     {
         $name = $event->user ? $event->user->getOriginal('name') :'guest';
-        Log::info("[Detected XSS] user: $name, payload: $event->payload");
+        $ip_address = Request()->getClientIp();
+        Log::info("[Detected XSS] user: $name, payload: $event->payload, ip: $ip_address");
     }
 }

@@ -5,9 +5,9 @@
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Status</th>
+            <th>Session</th>
             <th>Registration date</th>
-            <th>Enable</th>
+            <th>Status</th>
         </tr>
         </thead>
         <tbody>

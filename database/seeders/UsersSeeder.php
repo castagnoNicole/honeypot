@@ -20,7 +20,7 @@ class UsersSeeder extends Seeder
                 'name' => 'admin',
                 'email' => 'thankyou@gmail.com',
                 'password' => '12345678',
-                'is_admin' => '0',
+                'is_admin' => '2',
             ],
             [
                 'name' => env('ADMIN_NAME'),

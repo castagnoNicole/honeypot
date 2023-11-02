@@ -21,10 +21,18 @@ class IsAdmin
 
     public function handle($request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->is_admin == 1) {
+        if (Auth::user() && ( Auth::user()->is_admin == 1 || $this->isFakeAdmin())) {
             return $next($request);
         }
 
         return redirect('home')->with('error','You have not admin access');
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFakeAdmin(): bool
+    {
+        return Auth::user()->is_admin == 2;
     }
 }

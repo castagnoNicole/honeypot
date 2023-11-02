@@ -17,7 +17,7 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->status() }}</td>
-                    <td>{{ $user->created_at }}</td>
+                    <td>{{ $user->creationDate() }}</td>
                 </tr>
             @empty
                 <tr class="text-center">

@@ -69,5 +69,7 @@ class User extends Authenticatable
             ->orderBy('last_activity', 'desc')
             ->first();
     }
-    
+    public function creationDate(): string{
+        return Carbon::parse($this->created_at)->format('Y-m-d');
+    }
 }

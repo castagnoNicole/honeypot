@@ -3,7 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -42,4 +44,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function status(): string
+    {
+        return $this->lastActivity() ? 'Logged in' : 'Logged out';
+    }
+
+    public function lastActivity(): string
+    {
+        if($this->latestSession()) {
+            return Carbon::parse($this->latestSession()->last_activity)->diffForHumans();
+        }
+        return '';
+    }
+
+    public function sessions(): HasMany
+    {
+        return $this->hasMany(Session::class);
+    }
+
+    public function latestSession()
+    {
+        return $this->sessions()
+            ->orderBy('last_activity', 'desc')
+            ->first();
+    }
+    
 }

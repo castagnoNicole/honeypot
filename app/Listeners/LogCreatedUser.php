@@ -2,29 +2,31 @@
 
 namespace App\Listeners;
 
-use App\Events\XSSDetected;
+use App\Events\CreatedUser;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Request;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 
-class LogXSSDetected
+class LogCreatedUser
 {
     /**
      * Create the event listener.
      */
     public function __construct()
     {
-        //
+
     }
 
     /**
      * Handle the event.
      */
-    public function handle(XSSDetected $event): void
+    public function handle(CreatedUser $event): void
     {
-        $name = $event->user ? $event->user->getOriginal('name') :'guest';
+        $name = $event->user->name;
         $ip_address = Request()->getClientIp();
-        Log::info("[Detected XSS] user: $name, payload: $event->payload, ip: $ip_address");
+        $url = Request()->path();
+        $method = Request()->method();
+        Log::info("[New User] user: $name, url: $url , method: $method, ip: $ip_address");
     }
 }

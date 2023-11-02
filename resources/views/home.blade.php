@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <div class="panel-body">
                         Check admin view:
-                        <a href="{{route('admin-view')}}">Admin View</a>
+                        <a href="{{route('admin')}}">Admin View</a>
                     </div>
                 </div>
             </div>

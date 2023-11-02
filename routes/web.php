@@ -31,4 +31,6 @@ Auth::routes([
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => ['admin']], function () {
     Route::get('admin', [AdminController::class, 'listAllUsers'])->name('admin');
+    Route::put('users/{id}/enable', [AdminController::class, 'enable'])->name('users.enable');
+    Route::put('users/{id}/disable', [AdminController::class, 'disable'])->name('users.disable');
 });

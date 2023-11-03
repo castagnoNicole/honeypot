@@ -25,6 +25,8 @@ class LogXSSDetected
     {
         $name = $event->user ? $event->user->getOriginal('name') :'guest';
         $ip_address = Request()->getClientIp();
-        Log::info("[Detected XSS] user: $name, payload: $event->payload, ip: $ip_address");
+        $url = Request()->path();
+        $method = Request()->method();
+        Log::info("[Detected XSS] user: $name, payload: $event->payload, url: $url , method: $method, ip: $ip_address");
     }
 }

@@ -76,5 +76,10 @@
             @yield('content')
         </main>
     </div>
+    <footer class="footer text-center mt-auto bg-light text-muted fixed-bottom py-3">
+        <div class="container">
+            <span class="text-muted">Made with ❤ by Nick, Krystian and Tanner</span>
+        </div>
+    </footer>
 </body>
 </html>

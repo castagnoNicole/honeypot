@@ -31,7 +31,7 @@ class IsAdmin
     /**
      * @return bool
      */
-    public function isFakeAdmin(): bool
+    private function isFakeAdmin(): bool
     {
         return Auth::user()->is_admin == 2;
     }

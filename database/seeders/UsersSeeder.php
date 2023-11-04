@@ -18,7 +18,7 @@ class UsersSeeder extends Seeder
         $users = [
             [
                 'name' => 'admin',
-                'email' => 'thankyou@gmail.com',
+                'email' => 'fakeadmin@gmail.com',
                 'password' => '12345678',
                 'is_admin' => '2',
             ],
@@ -26,6 +26,7 @@ class UsersSeeder extends Seeder
                 'name' => env('ADMIN_NAME'),
                 'email' => 'ammi@gmail.com',
                 'password' => env('ADMIN_PASSWORD'),
+                'profile_pic' => 'images/ice-cream.jpg',
                 'is_admin' => '1',
             ]
         ];

@@ -51,17 +51,14 @@
                             </li>
                         @endif
                     @else
-                        @if(Auth::user()->profile_pic)
                             <li class="nav-item">
-                                <img  width="50" height="50"
-                                     src="{{ asset('storage/images/ice-cream.jpg') }}" alt="ice-cream cone">
+                                <img  class="image rounded-circle" width="50" height="50"
+                                     src="{{ asset('storage/'.Auth::user()->profile_pic)}}" alt="profile pic">
                             </li>
-                        @else
-                            <span>No image found!</span>
-                        @endif
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {!! Auth::user()->name !!}
                             </a>
 

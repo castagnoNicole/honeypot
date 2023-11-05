@@ -19,8 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $users = User::all();
-    return view('welcome')->with(compact('users'));
+    return view('welcome');
 });
 
 Auth::routes([

@@ -53,7 +53,7 @@
                     @else
                             <li class="nav-item">
                                 <img  class="image rounded-circle" width="50" height="50"
-                                     src="{{ asset('storage/'.Auth::user()->profile_pic)}}" alt="profile pic">
+                                     src="{{ asset(Auth::user()->profile_pic)}}" alt="profile pic">
                             </li>
 
                         <li class="nav-item dropdown">
@@ -63,7 +63,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('user-profile') }}">
+                                <a class="dropdown-item" href="{{ route('profile') }}">
                                     {{ __('Profile') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"

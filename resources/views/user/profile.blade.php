@@ -14,7 +14,7 @@
                     <div class="card-header">Profile</div>
                     <div class="card-body border-bottom">
                         <div class="text-center">
-                            <img class="image rounded-circle" src="{{ asset('storage/'.Auth::user()->profile_pic)}}" alt="" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
+                            <img class="image rounded-circle" src="{{ asset(Auth::user()->profile_pic)}}" alt="" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
                         </div>
 
                         <form class="m-2" action="{{route('profile')}}" method="POST" enctype="multipart/form-data">

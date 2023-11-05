@@ -17,3 +17,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+!/storage/app/images/user.png
+!/storage/app/images/ice-cream.jpg

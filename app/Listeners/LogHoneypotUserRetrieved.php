@@ -22,9 +22,10 @@ class LogHoneypotUserRetrieved
      */
     public function handle(HoneypotUserRetrieved $event): void
     {
+        $name = $event->user->name;
         $ip_address = Request()->getClientIp();
         $url = Request()->path();
         $method = Request()->method();
-        Log::info("[Fake Admin Logged in] url: $url , method: $method, ip: $ip_address");
+        Log::info("[Fake Admin Logged in] user: $name, url: $url , method: $method, ip: $ip_address");
     }
 }

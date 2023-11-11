@@ -20,14 +20,13 @@ class UserController extends Controller
         return view('user.profile');
     }
 
-    public function update(Request $request)
+    public function uploadPicture(Request $request)
     {
         $validation = Validator::make($request->all(), [
             'profile_pic' => 'image|max:2048' //jpg, jpeg, png, bmp, gif, svg, or webp
         ]);
 
         if ($validation->fails()) {
-
             return redirect()->back()->withErrors($validation)->withInput();
         }
 
@@ -41,4 +40,23 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function updateName(Request $request){
+        $validation = Validator::make($request->all(), [
+            'name' => [
+                'string','nullable', 'min:4',
+                'unique:users,name,' . Auth()->user()->id,]
+        ]);
+
+        if ($validation->fails()) {
+            return redirect()->back()->withErrors($validation)->withInput();
+        }
+
+        $user = auth()->user();
+        $user->name = $request->name;
+        $user->save();
+
+        // @TODO Log name update
+
+        return redirect()->back();
+    }
 }

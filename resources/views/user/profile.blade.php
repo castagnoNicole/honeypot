@@ -14,33 +14,34 @@
                     <div class="card-header">Profile</div>
                     <div class="card-body border-bottom">
                         <div class="text-center">
-                            <img class="image rounded-circle" src="{{ asset(Auth::user()->profile_pic)}}" alt="" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
+                            <img class="image rounded-circle" src="{{ asset(Auth::user()->profile_pic)}}" alt="profile picture" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
                         </div>
 
-                        <form class="m-2" action="{{route('profile')}}" method="POST" enctype="multipart/form-data">
+                        <form class="m-2" action="{{route('update')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
-                                <p class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</p>
-                                <p class="col-md-6 col-form-label text-md-right">{{ Auth()->user()->name }}</p>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
+                                <div class="col-md-6">
+                                    <input autofocus
+                                           id="name"
+                                           type="text"
+                                           class="form-control @error('name') is-invalid @enderror"
+                                           name="name"
+                                           placeholder="{{ Auth()->user()->name }}">
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
                             </div>
-                            {{-- <div class="form-group row">
-                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                         <div class="col-md-6">
-                                 <input autofocus
-                                        id="name"
-                                        type="text"
-                                        class="form-control @error('name') is-invalid @enderror"
-                                        name="name"
-                                        placeholder="{{ Auth()->user()->name }}">
-                                 @error('name')
-                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                                 @enderror
-                             </div>
-                         </div>--}}
-
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary mt-3 col-2">Update</button>
+                            </div>
+                        </form>
+                        <form class="m-2" action="{{route('upload')}}" method="POST" enctype="multipart/form-data">
                             <div class="form-group row">
-                                <label for="profile_pic" class="col-md-4 col-form-label text-md-right">Profile image</label>
+                                <label for="profile_pic" class="col-md-4 col-form-label text-md-right">Profile
+                                    image</label>
 
                                 <div class="col-md-6">
                                     <input id="profile_pic" type="file"
@@ -53,13 +54,12 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary mt-3 col-8">Save</button>
+                                <button type="submit" class="btn btn-primary mt-3 col-6">Upload</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection

@@ -31,7 +31,8 @@ Auth::routes([
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('user/profile', [UserController::class, 'show'])->name('profile');
-Route::post('user/profile', [UserController::class, 'update'])->name('profile');
+Route::post('user/profile', [UserController::class, 'uploadPicture'])->name('upload');
+Route::post('user/profile/name', [UserController::class, 'updateName'])->name('update');
 
 Route::group(['middleware' => ['admin']], function () {
     Route::get('admin', [AdminController::class, 'listAllUsers'])->name('admin');

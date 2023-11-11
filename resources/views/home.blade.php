@@ -7,6 +7,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Dashboard') }}</div>
 
+
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
@@ -18,7 +19,7 @@
                     </div>
                     <div class="card-body">
                         <div class="panel-body">
-                            Check admin view:
+                            Go to the admin panel:
                             <a href="{{route('admin')}}">Admin View</a>
                         </div>
                     </div>

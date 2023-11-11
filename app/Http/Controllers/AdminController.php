@@ -25,7 +25,7 @@ class AdminController extends Controller
 
             return redirect()->back();
         }else{
-           return redirect()->route('home')->with('error', 'You don\'t have admin access.');
+           return redirect()->back()->with('error', 'You don\'t have admin access.');
         }
 
     }
@@ -40,9 +40,8 @@ class AdminController extends Controller
 
             return redirect()->back();
         }else{
-            return redirect()->route('home')->with('error', 'You don\'t have admin access.');
+            return redirect()->back()->with('error', 'You don\'t have admin access.');
         }
-
 
     }
 }

@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\AttemptedBrokenAccessControl;
 use App\Events\CreatedUser;
 use App\Events\HoneypotUserRetrieved;
 use App\Events\PictureUpdated;
 use App\Events\XSSDetected;
+use App\Listeners\LogAttemptedBrokenAccessControl;
 use App\Listeners\LogCreatedUser;
 use App\Listeners\LogHoneypotUserRetrieved;
 use App\Listeners\LogPictureUpdated;
@@ -35,7 +37,7 @@ class EventServiceProvider extends ServiceProvider
         XSSDetected::class => [
             LogXSSDetected::class,
         ],
-        HoneypotUserRetrieved::class => [
+         HoneypotUserRetrieved::class => [
             LogHoneypotUserRetrieved::class,
         ],
         CreatedUser::class => [
@@ -43,8 +45,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         PictureUpdated::class => [
             LogPictureUpdated::class,
+        ],
+        AttemptedBrokenAccessControl::class => [
+            LogAttemptedBrokenAccessControl::class,
         ]
-
     ];
 
     /**
@@ -53,7 +57,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         User::observe(UserObserver::class);
-        User::observe(HoneypotUserObserver::class);
+       // User::observe(HoneypotUserObserver::class);
     }
 
     /**

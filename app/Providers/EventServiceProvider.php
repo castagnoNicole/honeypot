@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Events\CreatedUser;
 use App\Events\HoneypotUserRetrieved;
+use App\Events\PictureUpdated;
 use App\Events\XSSDetected;
 use App\Listeners\LogCreatedUser;
 use App\Listeners\LogHoneypotUserRetrieved;
+use App\Listeners\LogPictureUpdated;
 use App\Listeners\LogXSSDetected;
 use App\Models\User;
 use App\Observers\HoneypotUserObserver;
@@ -38,7 +40,11 @@ class EventServiceProvider extends ServiceProvider
         ],
         CreatedUser::class => [
             LogCreatedUser::class,
+        ],
+        PictureUpdated::class => [
+            LogPictureUpdated::class,
         ]
+
     ];
 
     /**

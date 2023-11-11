@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PictureUpdated;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -35,6 +36,9 @@ class UserController extends Controller
         $user = auth()->user();
         $user->profile_pic = $path;
         $user->save();
+
+        event(new PictureUpdated($user));
+
         return redirect()->back();
     }
 

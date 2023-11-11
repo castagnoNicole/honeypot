@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Events\HoneypotUserRetrieved;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Auth;
 
 class HoneypotUserObserver
 {

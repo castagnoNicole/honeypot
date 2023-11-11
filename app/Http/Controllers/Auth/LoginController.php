@@ -21,6 +21,10 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    // Throttling control
+    protected $maxAttempts = 30; // Default is 6
+    protected $decayMinutes = 1; // Default is 1 min
+
     /**
      * Where to redirect users after login.
      *

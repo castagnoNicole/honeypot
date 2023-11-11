@@ -31,7 +31,6 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validation)->withInput();
         }
 
-
         $path = $request->file('profile_pic')->store('images');
         $user = auth()->user();
         $user->profile_pic = $path;

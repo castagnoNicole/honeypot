@@ -31,11 +31,11 @@ Auth::routes([
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('user/profile', [UserController::class, 'show'])->name('profile');
-Route::post('user/profile', [UserController::class, 'uploadPicture'])->name('upload');
+Route::post('user/profile/picture', [UserController::class, 'uploadPicture'])->name('upload');
 Route::post('user/profile/name', [UserController::class, 'updateName'])->name('update');
 
 Route::group(['middleware' => ['admin']], function () {
     Route::get('admin', [AdminController::class, 'listAllUsers'])->name('admin');
-    Route::put('users/{id}/enable', [AdminController::class, 'enable'])->name('users.enable');
-    Route::put('users/{id}/disable', [AdminController::class, 'disable'])->name('users.disable');
+    Route::post('users/{id}/enable', [AdminController::class, 'enable'])->name('users.enable');
+    Route::post('users/{id}/disable', [AdminController::class, 'disable'])->name('users.disable');
 });

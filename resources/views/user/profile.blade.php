@@ -39,6 +39,7 @@
                             </div>
                         </form>
                         <form class="m-2" action="{{route('upload')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="form-group row">
                                 <label for="profile_pic" class="col-md-4 col-form-label text-md-right">Profile
                                     image</label>

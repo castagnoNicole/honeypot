@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\PictureUpdated;
 use App\Models\User;
+use App\Rules\SQLiRule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
@@ -42,9 +43,7 @@ class UserController extends Controller
 
     public function updateName(Request $request){
         $validation = Validator::make($request->all(), [
-            'name' => [
-                'string','nullable', 'min:4',
-                'unique:users,name,' . Auth()->user()->id,]
+            'name' => [new SQLiRule,'string', 'min:4', 'unique:users,name,' . Auth()->user()->id],
         ]);
 
         if ($validation->fails()) {

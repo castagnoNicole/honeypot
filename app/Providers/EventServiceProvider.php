@@ -6,11 +6,13 @@ use App\Events\AttemptedBrokenAccessControl;
 use App\Events\CreatedUser;
 use App\Events\HoneypotUserRetrieved;
 use App\Events\PictureUpdated;
+use App\Events\SQLinjectionAttempted;
 use App\Events\XSSDetected;
 use App\Listeners\LogAttemptedBrokenAccessControl;
 use App\Listeners\LogCreatedUser;
 use App\Listeners\LogHoneypotUserRetrieved;
 use App\Listeners\LogPictureUpdated;
+use App\Listeners\LogSQLinjectionAttempted;
 use App\Listeners\LogXSSDetected;
 use App\Models\User;
 use App\Observers\HoneypotUserObserver;
@@ -48,6 +50,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         AttemptedBrokenAccessControl::class => [
             LogAttemptedBrokenAccessControl::class,
+        ],
+        SQLinjectionAttempted::class => [
+            LogSQLinjectionAttempted::class,
         ]
     ];
 

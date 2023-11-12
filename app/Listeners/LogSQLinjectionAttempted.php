@@ -2,13 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Events\AttemptedBrokenAccessControl;
-use http\Env\Request;
+use App\Events\SQLinjectionAttempted;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 
-class LogAttemptedBrokenAccessControl
+class LogSQLinjectionAttempted
 {
     /**
      * Create the event listener.
@@ -21,13 +20,12 @@ class LogAttemptedBrokenAccessControl
     /**
      * Handle the event.
      */
-    public function handle(AttemptedBrokenAccessControl $event): void
+    public function handle(SQLinjectionAttempted $event): void
     {
-        $name = Request()->name;
-        $password = Request()->password;
+        $name = $event->user ? $event->user->getOriginal('name') :'guest';
         $ip_address = Request()->getClientIp();
         $url = Request()->path();
         $method = Request()->method();
-        Log::info("[Broken Access Control Attempt] user: $name, password: $password url: $url , method: $method, ip: $ip_address");
+        Log::info("[SQL injection Attempt] user: $name, payload: $event->payload, url: $url , method: $method, ip: $ip_address");
     }
 }

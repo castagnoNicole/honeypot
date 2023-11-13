@@ -42,8 +42,12 @@ class UserController extends Controller
     }
 
     public function updateName(Request $request){
+        if(auth()->user()->id == 1 || auth()->user()->id == 2){
+            return redirect()->back()->with('error', 'You cannot change the username of an admin');
+        }
+
         $validation = Validator::make($request->all(), [
-            'name' => [new SQLiRule,'string', 'min:4', 'unique:users,name,' . Auth()->user()->id],
+            'name' => [new SQLiRule,'string', 'min:4', 'unique:users,name,' . auth()->user()->id],
         ]);
 
         if ($validation->fails()) {

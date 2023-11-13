@@ -17,12 +17,14 @@
 
                         {{ __('You are logged in!') }}
                     </div>
+                    @if(Auth()->user()->is_admin)
                     <div class="card-body">
                         <div class="panel-body">
                             Go to the admin panel:
                             <a href="{{route('admin')}}">Admin View</a>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

@@ -7,12 +7,14 @@ use App\Events\CreatedUser;
 use App\Events\HoneypotUserRetrieved;
 use App\Events\PictureUpdated;
 use App\Events\SQLinjectionAttempted;
+use App\Events\UsernameUpdated;
 use App\Events\XSSDetected;
 use App\Listeners\LogAttemptedBrokenAccessControl;
 use App\Listeners\LogCreatedUser;
 use App\Listeners\LogHoneypotUserRetrieved;
 use App\Listeners\LogPictureUpdated;
 use App\Listeners\LogSQLinjectionAttempted;
+use App\Listeners\LogUsernameUpdated;
 use App\Listeners\LogXSSDetected;
 use App\Models\User;
 use App\Observers\HoneypotUserObserver;
@@ -48,12 +50,15 @@ class EventServiceProvider extends ServiceProvider
         PictureUpdated::class => [
             LogPictureUpdated::class,
         ],
+        UsernameUpdated::class =>[
+            LogUsernameUpdated::class
+        ],
         AttemptedBrokenAccessControl::class => [
             LogAttemptedBrokenAccessControl::class,
         ],
         SQLinjectionAttempted::class => [
             LogSQLinjectionAttempted::class,
-        ]
+        ],
     ];
 
     /**
@@ -62,7 +67,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         User::observe(UserObserver::class);
-       // User::observe(HoneypotUserObserver::class);
     }
 
     /**

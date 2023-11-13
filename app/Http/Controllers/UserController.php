@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\PictureUpdated;
+use App\Events\UsernameUpdated;
 use App\Models\User;
 use App\Rules\SQLiRule;
 use Illuminate\Http\Request;
@@ -58,7 +59,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->save();
 
-        // @TODO Log name update
+        event(new UsernameUpdated($user));
 
         return redirect()->back();
     }

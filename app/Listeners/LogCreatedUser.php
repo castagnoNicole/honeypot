@@ -23,12 +23,12 @@ class LogCreatedUser
      */
     public function handle(CreatedUser $event): void
     {
-        $name = $event->user->name;
+        $name = json_encode($event->user->name);
         $ip_address = Request()->getClientIp();
         $url = Request()->path();
         $method = Request()->method();
         $time = date_timestamp_get(date_create());
         //Log::info("[New User] user: $name, url: $url , method: $method, ip: $ip_address");
-        Log::info("{\"event\": \"new-user-created\", \"time\": $time, \"host\": \"group15web\", \"client\": \"$ip_address\", \"user\": \"$name\", \"payload\": \"\", \"method\": \"$method\", \"url\": \"$url\"}");
+        Log::info("{\"event\": \"new-user-created\", \"time\": $time, \"host\": \"group15web\", \"client\": \"$ip_address\", \"user\": $name, \"payload\": \"\", \"method\": \"$method\", \"url\": \"$url\"}");
     }
 }

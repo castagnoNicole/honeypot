@@ -23,13 +23,13 @@ class LogAttemptedBrokenAccessControl
      */
     public function handle(AttemptedBrokenAccessControl $event): void
     {
-        $name = Request()->name;
+        $name = json_encode(Request()->name);
         $password = Request()->password;
         $ip_address = Request()->getClientIp();
         $url = Request()->path();
         $method = Request()->method();
         $time = date_timestamp_get(date_create());
         //Log::info("[Broken Access Control Attempt] user: $name, password: $password url: $url , method: $method, ip: $ip_address");
-        Log::info("{\"event\": \"broken-access-control-attempted\", \"time\": $time, \"host\": \"group15web\", \"client\": \"$ip_address\", \"user\": \"$name\", \"payload\": \"$password\", \"method\": \"$method\", \"url\": \"$url\"}");
+        Log::info("{\"event\": \"broken-access-control-attempted\", \"time\": $time, \"host\": \"group15web\", \"client\": \"$ip_address\", \"user\": $name, \"payload\": \"$password\", \"method\": \"$method\", \"url\": \"$url\"}");
     }
 }

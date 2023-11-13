@@ -27,6 +27,8 @@ class LogCreatedUser
         $ip_address = Request()->getClientIp();
         $url = Request()->path();
         $method = Request()->method();
-        Log::info("[New User] user: $name, url: $url , method: $method, ip: $ip_address");
+        $time = date_timestamp_get(date_create());
+        //Log::info("[New User] user: $name, url: $url , method: $method, ip: $ip_address");
+        Log::info("{\"event\": \"new-user-created\", \"time\": $time, \"host\": \"group15web\", \"client\": \"$ip_address\", \"user\": \"$name\", \"payload\": \"\", \"method\": \"$method\", \"url\": \"$url\"}");
     }
 }

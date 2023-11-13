@@ -26,6 +26,9 @@ class LogPictureUpdated
         $ip_address = Request()->getClientIp();
         $url = Request()->path();
         $method = Request()->method();
-        Log::info("[Picture Update] user: $name, url: $url , method: $method, ip: $ip_address");
+        $time = date_timestamp_get(date_create());
+        //{ "event": "ssh-honeypot-auth", "time": 1699888053, "host": "group15web", "client": "172.20.1.140", "user": "username", "pass": "administrator" }
+        //Log::info("[Picture Update] user: $name, url: $url , method: $method, ip: $ip_address");
+        Log::info("{\"event\": \"picture-update\", \"time\": $time, \"host\": \"group15web\", \"ip\":  \"$ip_address\", \"user\": \"$name\", \"method\": \"$method\", \"url\": \"$url\"}");
     }
 }

@@ -28,6 +28,8 @@ class LogAttemptedBrokenAccessControl
         $ip_address = Request()->getClientIp();
         $url = Request()->path();
         $method = Request()->method();
-        Log::info("[Broken Access Control Attempt] user: $name, password: $password url: $url , method: $method, ip: $ip_address");
+        $time = date_timestamp_get(date_create());
+        //Log::info("[Broken Access Control Attempt] user: $name, password: $password url: $url , method: $method, ip: $ip_address");
+        Log::info("{\"event\": \"broken-access-control-attempted\", \"time\": $time, \"host\": \"group15web\", \"client\": \"$ip_address\", \"user\": \"$name\", \"payload\": \"$password\", \"method\": \"$method\", \"url\": \"$url\"}");
     }
 }

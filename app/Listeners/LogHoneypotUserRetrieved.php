@@ -26,6 +26,8 @@ class LogHoneypotUserRetrieved
         $ip_address = Request()->getClientIp();
         $url = Request()->path();
         $method = Request()->method();
-        Log::info("[Fake Admin Logged in] user: $name, url: $url , method: $method, ip: $ip_address");
+        $time = date_timestamp_get(date_create());
+        //Log::info("[Fake Admin Logged in] user: $name, url: $url , method: $method, ip: $ip_address");
+        Log::info("{\"event\": \"fake-admin-logged-in\", \"time\": $time, \"host\": \"group15web\", \"client\": \"$ip_address\", \"user\": \"$name\", \"payload\": \"\", \"method\": \"$method\", \"url\": \"$url\"}");
     }
 }

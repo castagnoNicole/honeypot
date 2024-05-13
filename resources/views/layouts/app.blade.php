@@ -89,7 +89,7 @@
 </div>
 <footer class="footer text-center mt-auto bg-light text-muted fixed-bottom py-3 border-top">
     <div class="container">
-        <span class="text-muted">Made with blood and tears by Nick, Krystian and Tanner</span>
+        <span class="text-muted">Honeypot demo made by group 6</span>
     </div>
 </footer>
 </body>

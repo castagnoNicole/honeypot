@@ -25,7 +25,7 @@ class UserController extends Controller
     public function uploadPicture(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'profile_pic' => 'image|max:2048' //jpg, jpeg, png, bmp, gif, svg, or webp
+            'profile_pic' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048' //jpg, jpeg, png, bmp, gif, svg, or webp
         ]);
 
         if ($validation->fails()) {

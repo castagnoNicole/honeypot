@@ -457,8 +457,6 @@ server {
 ```
 
 
-## Overview solutions for honeypots
-
 
 
  
